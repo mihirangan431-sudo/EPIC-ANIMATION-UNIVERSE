@@ -123,6 +123,19 @@ footer{padding:26px;text-align:center;color:#77758e;font-size:10px;letter-spacin
 <section class="section" id="characters"><div class="section-head"><div class="kicker">Meet the legends</div><h2>Characters from every corner.</h2><p>Heroes, creatures and curious travellers from across the universe.</p></div></section>
 </main><footer>EPIC ANIMATION UNIVERSE&nbsp; · &nbsp;EXPLORE BEYOND IMAGINATION</footer></div>
 <div id="status">✦ 3D UNIVERSE LOADING</div>
+
+<div class="trailer-modal" id="trailerModal" aria-hidden="true">
+  <div class="trailer-shell" role="dialog" aria-modal="true" aria-label="Animated teaser player">
+    <button class="trailer-close" id="trailerClose" aria-label="Close teaser">✕</button>
+    <div class="trailer-stage">
+      <canvas id="trailerCanvas"></canvas><div class="trailer-vignette"></div>
+      <div class="trailer-copy"><div class="trailer-eyebrow" id="trailerEyebrow">AN EPIC ANIMATION UNIVERSE ORIGINAL</div><div class="trailer-title" id="trailerTitle">THE LAST GALAXY</div><p id="trailerCaption">At the edge of everything...</p></div>
+      <div class="trailer-end" id="trailerEnd"><span>AN EPIC ANIMATION UNIVERSE ORIGINAL</span><strong>TRAILER<br>COMING SOON!</strong><small>THE ADVENTURE IS ONLY BEGINNING</small></div>
+    </div>
+    <div class="trailer-controls"><div class="trailer-progress"><span id="trailerProgress"></span></div><div class="trailer-control-row"><span id="trailerTime">00:00 / 00:20</span><div><button id="trailerPause" type="button">Ⅱ PAUSE</button><button id="trailerReplay" type="button">↻ REPLAY</button></div></div><div class="trailer-note">Animated teaser preview · English narration when supported</div></div>
+  </div>
+</div>
+
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 const canvas=document.querySelector('#space'),status=document.querySelector('#status');
