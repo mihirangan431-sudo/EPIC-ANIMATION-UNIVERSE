@@ -38,6 +38,31 @@ footer{padding:26px;text-align:center;color:#77758e;font-size:10px;letter-spacin
 #status{position:fixed;right:20px;bottom:18px;z-index:5;color:#aaa8c3;font-size:10px;letter-spacing:.1em;background:rgba(4,5,15,.55);padding:8px 11px;border:1px solid rgba(255,255,255,.1);border-radius:20px}
 @media(max-width:760px){nav{height:68px}.links{display:none;position:absolute;top:68px;left:0;right:0;padding:20px;background:rgba(5,6,18,.95);flex-direction:column;gap:18px}.links.open{display:flex}.menu{display:block}.hero{min-height:calc(100vh - 68px);padding-top:50px}.hero-copy{max-width:520px}.cards{grid-template-columns:1fr}.card{min-height:190px}.hint{bottom:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.btn{transition:none}}
+
+.films-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
+.film-card{overflow:hidden;border:1px solid rgba(190,145,255,.2);background:linear-gradient(150deg,rgba(50,16,82,.32),rgba(15,22,58,.38));backdrop-filter:blur(12px);transition:transform .25s,border-color .25s}
+.film-card:hover{transform:translateY(-7px);border-color:rgba(216,91,255,.65)}
+.poster{height:310px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:22px;background:#100a22;isolation:isolate}
+.poster:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.95}
+.poster-galaxy:before{background:radial-gradient(circle at 72% 45%,#f2a6ff 0 2%,#7841c9 3% 8%,transparent 25%),radial-gradient(ellipse at 70% 50%,rgba(84,54,187,.85),transparent 48%),linear-gradient(145deg,#09091c,#21104a 55%,#070817)}
+.poster-kingdom:before{background:radial-gradient(circle at 50% 35%,rgba(255,130,202,.75),transparent 4%),linear-gradient(180deg,#35104d,#160d36 60%,#080713)}
+.poster-earth:before{background:radial-gradient(circle at 70% 48%,#9dbbff 0 5%,#4663bb 6% 14%,transparent 15%),radial-gradient(ellipse at 72% 55%,rgba(46,102,206,.8),transparent 38%),linear-gradient(145deg,#080b20,#12245a 58%,#160b31)}
+.poster-kicker,.poster-foot{font-size:9px;letter-spacing:.2em;color:#e9d9ff;z-index:1}
+.poster strong{font-size:clamp(32px,3vw,49px);line-height:.92;letter-spacing:-.04em;text-shadow:0 3px 25px #080510;z-index:1}
+.poster-orb{position:absolute;width:165px;height:165px;border-radius:50%;right:8%;top:32%;background:radial-gradient(circle at 32% 30%,#f7c9ff,#9a55d9 35%,#271052 72%);box-shadow:0 0 48px rgba(196,105,255,.55)}
+.poster-castle{position:absolute;right:13%;bottom:22%;font-size:105px;color:#dba7ff;text-shadow:0 0 28px #b44cff;opacity:.85}
+.poster-planet{position:absolute;width:150px;height:150px;border-radius:50%;right:8%;top:34%;background:radial-gradient(circle at 30% 28%,#d8edff,#5c83df 42%,#14235d 78%);box-shadow:0 0 48px rgba(83,135,255,.5)}
+.film-info{padding:22px}
+.film-meta{display:flex;justify-content:space-between;color:#d68aff;font-size:9px;letter-spacing:.16em}
+.film-info h3{font-size:23px;letter-spacing:.02em;margin:15px 0 10px}
+.film-info p{font-size:13px;line-height:1.75;color:var(--muted)}
+.film-info details{margin:15px 0;color:#e8d5ff;font-size:12px}
+.film-info summary{cursor:pointer;color:#e5a2ff;letter-spacing:.04em}
+.film-info .story-extra{padding:8px 0 0}
+.coming{display:inline-block;margin-top:8px;padding:7px 9px;border:1px solid rgba(216,91,255,.35);color:#e4a5ff;font-size:9px;letter-spacing:.14em}
+@media(max-width:900px){.films-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.films-grid{grid-template-columns:1fr}.poster{height:290px}}
+
 </style>
 </head>
 <body>
@@ -54,11 +79,22 @@ footer{padding:26px;text-align:center;color:#77758e;font-size:10px;letter-spacin
 <div class="actions"><a class="btn" href="#worlds">Explore universe&nbsp; ↗</a><a class="btn ghost" href="#films">Discover stories</a></div>
 </div><div class="hint"><b>✦</b>&nbsp; Move your mouse to explore the stars</div></section>
 <section class="section" id="films"><div class="section-head"><div class="kicker">Your gateway to wonder</div><h2>One universe. Endless stories.</h2><p>Discover cinematic adventures, mysterious places and characters waiting to be brought to life.</p></div>
-<div class="cards">
-<article class="card"><div class="num">01 / CINEMA</div><h3>Animation Films</h3><p>Explore original animated stories filled with wonder, emotion and adventure.</p></article>
-<article class="card" id="worlds"><div class="num">02 / DISCOVERY</div><h3>Fantasy Worlds</h3><p>Travel through enchanted kingdoms, distant planets and mysterious galaxies.</p></article>
-<article class="card" id="characters"><div class="num">03 / LEGENDS</div><h3>Epic Characters</h3><p>Meet heroes, creatures and curious travellers from across the universe.</p></article>
+<div class="films-grid">
+<article class="film-card">
+<div class="poster poster-galaxy"><span class="poster-kicker">AN EPIC SPACE ADVENTURE</span><strong>THE LAST<br>GALAXY</strong><span class="poster-orb"></span><span class="poster-foot">A LIGHT IN THE FINAL DARKNESS</span></div>
+<div class="film-info"><div class="film-meta">SCI-FI · ADVENTURE <span>01</span></div><h3>THE LAST GALAXY</h3><p>When the stars begin to disappear, a young explorer discovers a mysterious signal coming from the edge of the universe. The last surviving galaxy may hold the key to saving them all.</p><details><summary>Explore the story</summary><p class="story-extra">A forgotten star map leads the crew across strange worlds. Along the way, they must decide whether the signal is a message of hope—or a warning from something ancient.</p></details><span class="coming">ORIGINAL STORY · COMING SOON</span></div>
+</article>
+<article class="film-card">
+<div class="poster poster-kingdom"><span class="poster-kicker">A DARK FANTASY TALE</span><strong>SHADOW<br>KINGDOM</strong><span class="poster-castle">♜</span><span class="poster-foot">WHEN THE MOON FORGETS THE SUN</span></div>
+<div class="film-info"><div class="film-meta">FANTASY · MYSTERY <span>02</span></div><h3>SHADOW KINGDOM</h3><p>Beyond a hidden mountain lies a kingdom where the night never ends. A curious traveller finds an ancient secret that could bring back the dawn—or make the darkness eternal.</p><details><summary>Explore the story</summary><p class="story-extra">With a brave guide and a mysterious glowing compass, the traveller journeys through enchanted forests and forgotten halls to uncover who stole the kingdom's light.</p></details><span class="coming">ORIGINAL STORY · COMING SOON</span></div>
+</article>
+<article class="film-card">
+<div class="poster poster-earth"><span class="poster-kicker">A JOURNEY BEYOND THE KNOWN</span><strong>BEYOND<br>EARTH</strong><span class="poster-planet"></span><span class="poster-foot">THE UNKNOWN IS CLOSER THAN IT SEEMS</span></div>
+<div class="film-info"><div class="film-meta">SCI-FI · EXPLORATION <span>03</span></div><h3>BEYOND EARTH</h3><p>A group of young space explorers follows an unexplained beacon to a beautiful world no human has ever seen. But the planet is hiding a mystery beneath its shining skies.</p><details><summary>Explore the story</summary><p class="story-extra">As the team explores floating landscapes and ancient structures, they discover that the beacon may have been waiting for them for a very long time.</p></details><span class="coming">ORIGINAL STORY · COMING SOON</span></div>
+</article>
 </div></section>
+<section class="section" id="worlds"><div class="section-head"><div class="kicker">Beyond the screen</div><h2>Worlds waiting to be explored.</h2><p>Discover enchanted kingdoms, distant planets and mysterious galaxies.</p></div></section>
+<section class="section" id="characters"><div class="section-head"><div class="kicker">Meet the legends</div><h2>Characters from every corner.</h2><p>Heroes, creatures and curious travellers from across the universe.</p></div></section>
 </main><footer>EPIC ANIMATION UNIVERSE&nbsp; · &nbsp;EXPLORE BEYOND IMAGINATION</footer></div>
 <div id="status">✦ 3D UNIVERSE LOADING</div>
 <script type="module">
