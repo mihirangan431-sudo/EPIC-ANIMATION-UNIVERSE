@@ -63,7 +63,33 @@ footer{padding:26px;text-align:center;color:#77758e;font-size:10px;letter-spacin
 @media(max-width:900px){.films-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.films-grid{grid-template-columns:1fr}.poster{height:290px}}
 
-</style>
+
+.watch-trailer{display:flex;align-items:center;gap:10px;margin-top:17px;padding:12px 15px;border:1px solid rgba(216,91,255,.65);border-radius:4px;background:linear-gradient(110deg,rgba(93,34,145,.7),rgba(30,60,140,.72),rgba(135,25,91,.72));color:#fff;font-size:10px;font-weight:800;letter-spacing:.16em;cursor:pointer;transition:.2s}
+.watch-trailer:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(170,80,255,.3)}
+.watch-trailer span{font-size:13px}
+.trailer-modal{display:none;position:fixed;inset:0;z-index:30;background:rgba(3,2,10,.92);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:20px}
+.trailer-modal.open{display:flex}
+.trailer-shell{width:min(100%,960px);background:#080610;border:1px solid rgba(190,145,255,.35);box-shadow:0 25px 100px #000;position:relative}
+.trailer-close{position:absolute;right:12px;top:12px;z-index:5;border:1px solid rgba(255,255,255,.35);background:rgba(5,4,15,.7);color:white;width:38px;height:38px;border-radius:50%;cursor:pointer}
+.trailer-stage{height:min(62vh,540px);min-height:330px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 50%,#24104b,#070611 75%)}
+#trailerCanvas{position:absolute;inset:0;width:100%;height:100%}
+.trailer-vignette{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,3,14,.48),transparent 85%),linear-gradient(0deg,rgba(4,3,14,.8),transparent 70%)}
+.trailer-copy{position:absolute;left:7%;right:7%;bottom:12%;max-width:680px;text-shadow:0 2px 25px #000}
+.trailer-eyebrow{font-size:10px;letter-spacing:.24em;color:#e1a4ff;margin-bottom:16px}
+.trailer-title{font-size:clamp(34px,7vw,76px);font-weight:900;letter-spacing:-.055em;line-height:.95;color:white}
+.trailer-copy p{font-size:clamp(14px,2vw,19px);line-height:1.5;color:#e5d9ff;max-width:600px;margin:16px 0 0}
+.trailer-end{display:none;position:absolute;inset:0;z-index:3;background:radial-gradient(circle at 50% 45%,rgba(112,42,164,.55),transparent 48%),linear-gradient(135deg,#090612,#101d50 55%,#321052);align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:20px;padding:25px}
+.trailer-end.show{display:flex}
+.trailer-end span,.trailer-end small{font-size:10px;letter-spacing:.24em;color:#d7b4ff}
+.trailer-end strong{font-size:clamp(42px,8vw,88px);line-height:.92;letter-spacing:-.05em;color:#fff;text-shadow:0 0 38px rgba(211,95,255,.6)}
+.trailer-controls{padding:13px 18px 16px}
+.trailer-progress{height:3px;background:rgba(255,255,255,.14);overflow:hidden}
+.trailer-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#8a42ff,#318bff,#e44ca7)}
+.trailer-control-row{display:flex;justify-content:space-between;align-items:center;padding-top:12px;color:#c9b9e2;font-size:10px;letter-spacing:.1em}
+.trailer-control-row button{border:1px solid rgba(190,145,255,.3);background:rgba(70,35,105,.25);color:#fff;padding:8px 11px;margin-left:7px;cursor:pointer;font-size:10px;letter-spacing:.08em}
+.trailer-note{text-align:center;color:#837996;font-size:9px;letter-spacing:.08em;margin-top:12px}
+@media(max-width:600px){.trailer-modal{padding:8px}.trailer-stage{min-height:300px;height:58vh}.trailer-copy{bottom:9%}.trailer-control-row{align-items:flex-start;gap:8px;flex-direction:column}}
+\n</style>
 </head>
 <body>
 <canvas id="space" aria-label="Animated 3D fantasy universe background"></canvas>
@@ -82,15 +108,15 @@ footer{padding:26px;text-align:center;color:#77758e;font-size:10px;letter-spacin
 <div class="films-grid">
 <article class="film-card">
 <div class="poster poster-galaxy"><span class="poster-kicker">AN EPIC SPACE ADVENTURE</span><strong>THE LAST<br>GALAXY</strong><span class="poster-orb"></span><span class="poster-foot">A LIGHT IN THE FINAL DARKNESS</span></div>
-<div class="film-info"><div class="film-meta">SCI-FI · ADVENTURE <span>01</span></div><h3>THE LAST GALAXY</h3><p>When the stars begin to disappear, a young explorer discovers a mysterious signal coming from the edge of the universe. The last surviving galaxy may hold the key to saving them all.</p><details><summary>Explore the story</summary><p class="story-extra">A forgotten star map leads the crew across strange worlds. Along the way, they must decide whether the signal is a message of hope—or a warning from something ancient.</p></details><span class="coming">ORIGINAL STORY · COMING SOON</span></div>
+<div class="film-info"><div class="film-meta">SCI-FI · ADVENTURE <span>01</span></div><h3>THE LAST GALAXY</h3><p>When the stars begin to disappear, a young explorer discovers a mysterious signal coming from the edge of the universe. The last surviving galaxy may hold the key to saving them all.</p><details><summary>Explore the story</summary><p class="story-extra">A forgotten star map leads the crew across strange worlds. Along the way, they must decide whether the signal is a message of hope—or a warning from something ancient.</p></details><button class="watch-trailer" type="button" data-trailer="galaxy"><span>▶</span> PLAY TEASER</button><span class="coming">ORIGINAL STORY · TRAILER COMING SOON</span></div>
 </article>
 <article class="film-card">
 <div class="poster poster-kingdom"><span class="poster-kicker">A DARK FANTASY TALE</span><strong>SHADOW<br>KINGDOM</strong><span class="poster-castle">♜</span><span class="poster-foot">WHEN THE MOON FORGETS THE SUN</span></div>
-<div class="film-info"><div class="film-meta">FANTASY · MYSTERY <span>02</span></div><h3>SHADOW KINGDOM</h3><p>Beyond a hidden mountain lies a kingdom where the night never ends. A curious traveller finds an ancient secret that could bring back the dawn—or make the darkness eternal.</p><details><summary>Explore the story</summary><p class="story-extra">With a brave guide and a mysterious glowing compass, the traveller journeys through enchanted forests and forgotten halls to uncover who stole the kingdom's light.</p></details><span class="coming">ORIGINAL STORY · COMING SOON</span></div>
+<div class="film-info"><div class="film-meta">FANTASY · MYSTERY <span>02</span></div><h3>SHADOW KINGDOM</h3><p>Beyond a hidden mountain lies a kingdom where the night never ends. A curious traveller finds an ancient secret that could bring back the dawn—or make the darkness eternal.</p><details><summary>Explore the story</summary><p class="story-extra">With a brave guide and a mysterious glowing compass, the traveller journeys through enchanted forests and forgotten halls to uncover who stole the kingdom's light.</p></details><button class="watch-trailer" type="button" data-trailer="kingdom"><span>▶</span> PLAY TEASER</button><span class="coming">ORIGINAL STORY · TRAILER COMING SOON</span></div>
 </article>
 <article class="film-card">
 <div class="poster poster-earth"><span class="poster-kicker">A JOURNEY BEYOND THE KNOWN</span><strong>BEYOND<br>EARTH</strong><span class="poster-planet"></span><span class="poster-foot">THE UNKNOWN IS CLOSER THAN IT SEEMS</span></div>
-<div class="film-info"><div class="film-meta">SCI-FI · EXPLORATION <span>03</span></div><h3>BEYOND EARTH</h3><p>A group of young space explorers follows an unexplained beacon to a beautiful world no human has ever seen. But the planet is hiding a mystery beneath its shining skies.</p><details><summary>Explore the story</summary><p class="story-extra">As the team explores floating landscapes and ancient structures, they discover that the beacon may have been waiting for them for a very long time.</p></details><span class="coming">ORIGINAL STORY · COMING SOON</span></div>
+<div class="film-info"><div class="film-meta">SCI-FI · EXPLORATION <span>03</span></div><h3>BEYOND EARTH</h3><p>A group of young space explorers follows an unexplained beacon to a beautiful world no human has ever seen. But the planet is hiding a mystery beneath its shining skies.</p><details><summary>Explore the story</summary><p class="story-extra">As the team explores floating landscapes and ancient structures, they discover that the beacon may have been waiting for them for a very long time.</p></details><button class="watch-trailer" type="button" data-trailer="earth"><span>▶</span> PLAY TEASER</button><span class="coming">ORIGINAL STORY · TRAILER COMING SOON</span></div>
 </article>
 </div></section>
 <section class="section" id="worlds"><div class="section-head"><div class="kicker">Beyond the screen</div><h2>Worlds waiting to be explored.</h2><p>Discover enchanted kingdoms, distant planets and mysterious galaxies.</p></div></section>
@@ -120,4 +146,67 @@ const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);
 document.querySelector('#menu').addEventListener('click',()=>document.querySelector('#links').classList.toggle('open'));
 document.querySelectorAll('#links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('#links').classList.remove('open')));
 </script>
-</body></html>
+
+<script>
+(()=>{
+const films={
+ galaxy:{title:'THE LAST GALAXY',eyebrow:'A SCI-FI ADVENTURE',color:'#a66bff',scenes:[
+ ['At the edge of the universe, the stars are falling silent.','A distant galaxy is fading...'],
+ ['One signal shines through the endless dark.','But one mysterious signal remains.'],
+ ['A young explorer must travel beyond the known worlds.','One explorer. One impossible journey.'],
+ ['The fate of every star rests on one final discovery.','The last galaxy holds the answer.']],
+ end:'TRAILER COMING SOON!'},
+ kingdom:{title:'SHADOW KINGDOM',eyebrow:'A DARK FANTASY TALE',color:'#e06bce',scenes:[
+ ['Beyond the mountains, a kingdom has forgotten the sun.','A kingdom trapped in endless night...'],
+ ['An ancient compass awakens beneath the ruins.','An ancient secret is waking.'],
+ ['A traveller follows its light into the heart of the shadows.','The journey leads into the unknown.'],
+ ['To bring back the dawn, the darkness must be understood.','Will the light ever return?']],
+ end:'TRAILER COMING SOON!'},
+ earth:{title:'BEYOND EARTH',eyebrow:'A JOURNEY INTO THE UNKNOWN',color:'#6baaff',scenes:[
+ ['A strange beacon calls from beyond our solar system.','A signal from a world unknown...'],
+ ['A team of young explorers answers the call.','A new world is waiting.'],
+ ['They discover floating lands and secrets beneath an alien sky.','Nothing is what it seems.'],
+ ['Their greatest discovery may change humanity forever.','The journey is only beginning.']],
+ end:'TRAILER COMING SOON!'}
+};
+const modal=document.getElementById('trailerModal'),canvas=document.getElementById('trailerCanvas'),ctx=canvas.getContext('2d');
+const title=document.getElementById('trailerTitle'),eyebrow=document.getElementById('trailerEyebrow'),caption=document.getElementById('trailerCaption'),end=document.getElementById('trailerEnd'),progress=document.getElementById('trailerProgress'),time=document.getElementById('trailerTime'),pauseBtn=document.getElementById('trailerPause');
+let active=null,start=0,elapsed=0,paused=false,raf=0,lastScene=-1,stars=[],w=0,h=0;
+const total=20000;
+function resize(){const r=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);w=r.width;h=r.height;canvas.width=Math.floor(w*d);canvas.height=Math.floor(h*d);ctx.setTransform(d,0,0,d,0,0);stars=Array.from({length:150},()=>({x:Math.random()*w,y:Math.random()*h,z:.3+Math.random()*1.5}))}
+function draw(t){
+ ctx.clearRect(0,0,w,h);const f=films[active],col=f.color;
+ const grad=ctx.createRadialGradient(w*.68,h*.43,5,w*.68,h*.43,Math.max(w,h)*.75);grad.addColorStop(0,active==='kingdom'?'#54205e':active==='earth'?'#183d79':'#402064');grad.addColorStop(1,'#05040d');ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
+ stars.forEach(s=>{s.x-=s.z*.18;if(s.x<0)s.x=w;ctx.fillStyle='rgba(235,225,255,'+(0.25+s.z*.35)+')';ctx.fillRect(s.x,s.y,s.z*1.5,s.z*1.5)});
+ const pulse=1+Math.sin(t*.001)*.025;
+ if(active==='galaxy'||active==='earth'){
+  const x=w*.72,y=h*.43,r=Math.min(w,h)*(active==='galaxy'?.19:.22)*pulse;
+  const g=ctx.createRadialGradient(x-r*.3,y-r*.35,r*.05,x,y,r);g.addColorStop(0,active==='earth'?'#d5e9ff':'#f0d5ff');g.addColorStop(.35,col);g.addColorStop(1,'#11102c');
+  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+  ctx.save();ctx.translate(x,y);ctx.rotate(-.22+Math.sin(t*.0002)*.06);ctx.beginPath();ctx.ellipse(0,0,r*1.65,r*.38,0,0,Math.PI*2);ctx.strokeStyle=col;ctx.globalAlpha=.6;ctx.lineWidth=3;ctx.stroke();ctx.restore();
+  if(active==='galaxy'){ctx.fillStyle='#fff';for(let i=0;i<5;i++){let a=t*.0002+i*1.25;ctx.beginPath();ctx.arc(x+Math.cos(a)*r*1.8,y+Math.sin(a)*r*.7,2,0,Math.PI*2);ctx.fill()}}
+ }else{
+  const moonX=w*.7,moonY=h*.34,moonR=Math.min(w,h)*.13;
+  ctx.beginPath();ctx.arc(moonX,moonY,moonR,0,Math.PI*2);ctx.fillStyle='#d68bdc';ctx.shadowColor=col;ctx.shadowBlur=35;ctx.fill();ctx.shadowBlur=0;
+  ctx.fillStyle='#090713';ctx.beginPath();ctx.moveTo(0,h*.78);ctx.lineTo(w*.12,h*.58);ctx.lineTo(w*.24,h*.76);ctx.lineTo(w*.39,h*.5);ctx.lineTo(w*.52,h*.78);ctx.lineTo(w*.68,h*.56);ctx.lineTo(w*.82,h*.75);ctx.lineTo(w,h*.57);ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.fill();
+  ctx.fillStyle='#160d25';for(let i=0;i<7;i++){let x=w*(.08+i*.14);ctx.fillRect(x,h*(.65+(i%3)*.04),w*.055,h*.3)}
+ }
+ if(active==='earth'){
+  ctx.fillStyle='rgba(180,210,255,.7)';for(let i=0;i<3;i++){let x=(t*.025+i*w*.42)%(w+150)-80;ctx.beginPath();ctx.ellipse(x,h*.25+i*25,65,10,0,0,Math.PI*2);ctx.fill()}
+ }
+}
+function speak(text){if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.92;u.pitch=1;u.volume=.9;window.speechSynthesis.speak(u)}
+function frame(now){if(!active)return;if(!paused)elapsed=Math.min(total,now-start);draw(now);const sec=Math.floor(elapsed/1000);progress.style.width=(elapsed/total*100)+'%';time.textContent='00:'+String(sec).padStart(2,'0')+' / 00:20';const scene=Math.min(3,Math.floor(elapsed/5000));if(scene!==lastScene&&elapsed<total){lastScene=scene;caption.textContent=films[active].scenes[scene][0];speak(films[active].scenes[scene][0])}
+ if(elapsed>=total){end.classList.add('show');caption.textContent='';if('speechSynthesis'in window)window.speechSynthesis.cancel();return}
+ raf=requestAnimationFrame(frame)}
+function open(id){active=id;elapsed=0;start=performance.now();paused=false;lastScene=-1;title.textContent=films[id].title;eyebrow.textContent=films[id].eyebrow;caption.textContent='';end.classList.remove('show');progress.style.width='0%';pauseBtn.textContent='Ⅱ PAUSE';modal.classList.add('open');modal.setAttribute('aria-hidden','false');resize();cancelAnimationFrame(raf);raf=requestAnimationFrame(frame)}
+function close(){active=null;cancelAnimationFrame(raf);if('speechSynthesis'in window)window.speechSynthesis.cancel();modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}
+document.querySelectorAll('[data-trailer]').forEach(b=>b.addEventListener('click',()=>open(b.dataset.trailer)));
+document.getElementById('trailerClose').addEventListener('click',close);
+modal.addEventListener('click',e=>{if(e.target===modal)close()});
+pauseBtn.addEventListener('click',()=>{if(!active)return;paused=!paused;if(paused){cancelAnimationFrame(raf);if('speechSynthesis'in window)window.speechSynthesis.pause();pauseBtn.textContent='▶ RESUME'}else{start=performance.now()-elapsed;if('speechSynthesis'in window)window.speechSynthesis.resume();pauseBtn.textContent='Ⅱ PAUSE';raf=requestAnimationFrame(frame)}});
+document.getElementById('trailerReplay').addEventListener('click',()=>{if(active)open(active)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close()});
+window.addEventListener('resize',()=>{if(active)resize()});
+})();
+</script>\n</body></html>
