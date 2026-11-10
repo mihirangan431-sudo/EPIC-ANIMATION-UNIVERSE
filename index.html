@@ -6,11 +6,11 @@
 <meta name="theme-color" content="#070817">
 <title>Epic Animation Universe</title>
 <style>
-:root{--bg:#070817;--text:#f5f4ff;--muted:#b8b6d2;--gold:#f4c978;--line:rgba(255,255,255,.16)}
+:root{--bg:#080610;--text:#f7f1ff;--muted:#bcb0d2;--gold:#d85bff;--purple:#321052;--blue:#263b91;--pink:#a51c68;--line:rgba(190,145,255,.2)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Arial,sans-serif;overflow-x:hidden}
+body{margin:0;background:radial-gradient(ellipse at 78% 18%,rgba(50,16,82,.42),transparent 38%),radial-gradient(ellipse at 12% 70%,rgba(16,42,105,.34),transparent 42%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Arial,sans-serif;overflow-x:hidden}
 #space{position:fixed;inset:0;width:100%;height:100%;z-index:0}
-body:after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 20%,rgba(3,4,15,.32) 75%,#050611 115%)}
+body:after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 20%,rgba(3,2,13,.3) 75%,#05030b 115%)}
 .site{position:relative;z-index:2}
 nav{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,6vw,88px);border-bottom:1px solid rgba(255,255,255,.09);background:rgba(5,6,18,.28);backdrop-filter:blur(12px)}
 .logo{font-weight:900;letter-spacing:.12em;font-size:14px}.logo span{color:var(--gold)}
@@ -23,7 +23,7 @@ h1{font-size:clamp(48px,8vw,108px);line-height:.92;letter-spacing:-.065em;margin
 h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.78)}
 .lead{color:#d0cee0;font-size:clamp(14px,1.5vw,17px);line-height:1.8;max-width:490px}
 .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
-.btn{border:1px solid rgba(244,201,120,.65);border-radius:4px;padding:15px 23px;color:#171321;background:linear-gradient(110deg,#f6d99a,#dba94e);font-size:11px;font-weight:800;letter-spacing:.16em;text-decoration:none;text-transform:uppercase;cursor:pointer;transition:transform .2s,filter .2s}
+.btn{border:1px solid rgba(216,91,255,.72);border-radius:5px;padding:15px 23px;color:#fff;background:linear-gradient(110deg,#7626a8,#2856b9 58%,#a51c68);font-size:11px;font-weight:800;letter-spacing:.16em;text-decoration:none;text-transform:uppercase;cursor:pointer;transition:transform .2s,filter .2s}
 .btn:hover{transform:translateY(-3px);filter:brightness(1.1)}.btn.ghost{color:white;background:rgba(255,255,255,.06);border-color:var(--line);backdrop-filter:blur(8px)}
 .hint{position:absolute;bottom:30px;left:clamp(24px,10vw,150px);font-size:10px;letter-spacing:.2em;color:#aaa8c3;text-transform:uppercase}
 .hint b{color:var(--gold);font-weight:500}
@@ -31,8 +31,8 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,255,255
 .section-head{max-width:650px;margin-bottom:36px}.kicker{font-size:10px;color:var(--gold);letter-spacing:.25em;text-transform:uppercase}
 h2{font-size:clamp(32px,5vw,58px);letter-spacing:-.045em;margin:12px 0}.section-head p{color:var(--muted);line-height:1.7}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{min-height:230px;padding:26px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:.25s}
-.card:hover{transform:translateY(-6px);border-color:rgba(244,201,120,.55)}.card:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-55px;top:-55px;background:radial-gradient(circle,rgba(132,111,255,.36),transparent 70%)}
+.card{min-height:230px;padding:26px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(76,37,119,.3),rgba(22,37,91,.2) 55%,rgba(165,28,104,.08));backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:.25s}
+.card:hover{transform:translateY(-6px);border-color:rgba(216,91,255,.65)}.card:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-55px;top:-55px;background:radial-gradient(circle,rgba(177,67,255,.42),rgba(39,91,210,.12) 45%,transparent 72%)}
 .card .num{font-size:11px;color:var(--gold);letter-spacing:.2em}.card h3{font-size:23px;margin:38px 0 10px}.card p{color:var(--muted);font-size:13px;line-height:1.7;max-width:300px}
 footer{padding:26px;text-align:center;color:#77758e;font-size:10px;letter-spacing:.16em;border-top:1px solid rgba(255,255,255,.08);background:#080918}
 #status{position:fixed;right:20px;bottom:18px;z-index:5;color:#aaa8c3;font-size:10px;letter-spacing:.1em;background:rgba(4,5,15,.55);padding:8px 11px;border:1px solid rgba(255,255,255,.1);border-radius:20px}
@@ -67,16 +67,16 @@ const canvas=document.querySelector('#space'),status=document.querySelector('#st
 try{
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,1000);camera.position.set(0,0,12);
-scene.add(new THREE.AmbientLight(0x9a9bcf,1.5));const key=new THREE.PointLight(0x9b8cff,65,100);key.position.set(5,4,8);scene.add(key);
+scene.add(new THREE.AmbientLight(0x9a9bcf,1.5));const key=new THREE.PointLight(0x9b55ff,70,100);key.position.set(5,4,8);scene.add(key);
 const starsGeo=new THREE.BufferGeometry(),count=1600,positions=new Float32Array(count*3);
 for(let i=0;i<count;i++){positions[i*3]=(Math.random()-.5)*95;positions[i*3+1]=(Math.random()-.5)*60;positions[i*3+2]=(Math.random()-.5)*65-12}
-starsGeo.setAttribute('position',new THREE.BufferAttribute(positions,3));const stars=new THREE.Points(starsGeo,new THREE.PointsMaterial({color:0xdedcff,size:.075,transparent:true,opacity:.85}));scene.add(stars);
+starsGeo.setAttribute('position',new THREE.BufferAttribute(positions,3));const stars=new THREE.Points(starsGeo,new THREE.PointsMaterial({color:0xe6d9ff,size:.075,transparent:true,opacity:.85}));scene.add(stars);
 const group=new THREE.Group();scene.add(group);
 function planet(r,color,x,y,z){const m=new THREE.Mesh(new THREE.SphereGeometry(r,48,36),new THREE.MeshStandardMaterial({color,roughness:.85,metalness:.1}));m.position.set(x,y,z);group.add(m);return m}
-const p1=planet(2.15,0x51458f,4.5,.3,-3),p2=planet(.72,0xd29b68,-4.7,2.2,-1),p3=planet(.42,0x5b9caa,2.5,-3.2,-1);
-const ring=new THREE.Mesh(new THREE.TorusGeometry(2.8,.045,10,120),new THREE.MeshBasicMaterial({color:0xd8c4ff,transparent:true,opacity:.6}));ring.position.copy(p1.position);ring.rotation.set(1.1,.25,-.3);group.add(ring);
-const moonPivot=new THREE.Group();moonPivot.position.copy(p1.position);group.add(moonPivot);const moon=new THREE.Mesh(new THREE.SphereGeometry(.22,24,16),new THREE.MeshStandardMaterial({color:0xe7d9b8}));moon.position.set(3.5,0,0);moonPivot.add(moon);
-for(let i=0;i<8;i++){const g=new THREE.Group();g.position.set((Math.random()-.5)*18,(Math.random()-.5)*10,-4-Math.random()*8);const rock=new THREE.Mesh(new THREE.DodecahedronGeometry(.4+Math.random()*.5),new THREE.MeshStandardMaterial({color:0x40395f,roughness:1,flatShading:true}));rock.scale.set(1.5,.65,1);g.add(rock);const crystal=new THREE.Mesh(new THREE.ConeGeometry(.18,.9,5),new THREE.MeshStandardMaterial({color:0x9d8aff,emissive:0x30205f}));crystal.position.y=.55;g.add(crystal);group.add(g)}
+const p1=planet(2.15,0x49306f,4.5,.3,-3),p2=planet(.72,0x9b397e,-4.7,2.2,-1),p3=planet(.42,0x315caa,2.5,-3.2,-1);
+const ring=new THREE.Mesh(new THREE.TorusGeometry(2.8,.045,10,120),new THREE.MeshBasicMaterial({color:0xd66cff,transparent:true,opacity:.6}));ring.position.copy(p1.position);ring.rotation.set(1.1,.25,-.3);group.add(ring);
+const moonPivot=new THREE.Group();moonPivot.position.copy(p1.position);group.add(moonPivot);const moon=new THREE.Mesh(new THREE.SphereGeometry(.22,24,16),new THREE.MeshStandardMaterial({color:0xd8c9ff}));moon.position.set(3.5,0,0);moonPivot.add(moon);
+for(let i=0;i<8;i++){const g=new THREE.Group();g.position.set((Math.random()-.5)*18,(Math.random()-.5)*10,-4-Math.random()*8);const rock=new THREE.Mesh(new THREE.DodecahedronGeometry(.4+Math.random()*.5),new THREE.MeshStandardMaterial({color:0x40395f,roughness:1,flatShading:true}));rock.scale.set(1.5,.65,1);g.add(rock);const crystal=new THREE.Mesh(new THREE.ConeGeometry(.18,.9,5),new THREE.MeshStandardMaterial({color:0x7f63ff,emissive:0x35105f}));crystal.position.y=.55;g.add(crystal);group.add(g)}
 const mouse={x:0,y:0};addEventListener('pointermove',e=>{mouse.x=(e.clientX/innerWidth-.5)*2;mouse.y=(e.clientY/innerHeight-.5)*2});
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.6))});
 const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();stars.rotation.y=t*.003;group.rotation.y+=(mouse.x*.08-group.rotation.y)*.012;group.rotation.x+=(-mouse.y*.045-group.rotation.x)*.012;p1.rotation.y=t*.045;p2.rotation.y=-t*.08;p3.rotation.y=t*.12;ring.rotation.z=t*.06;moonPivot.rotation.y=t*.22;renderer.render(scene,camera)}animate();status.textContent='✦ 3D UNIVERSE ONLINE';
